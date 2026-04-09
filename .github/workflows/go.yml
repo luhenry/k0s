@@ -273,6 +273,24 @@ jobs:
       arch: arm64
       name: ${{ matrix.smoke-suite }}
 
+  smoketests-linux-riscv64:
+    strategy:
+      fail-fast: false
+      matrix:
+        smoke-suite:
+          - airgap
+          - basic
+          - network-conformance-calico
+          - network-conformance-kuberouter
+
+    name: "check-${{ matrix.smoke-suite }} :: riscv64"
+    needs: [build-k0s, build-airgap-image-bundle]
+
+    uses: ./.github/workflows/smoketest.yaml
+    with:
+      arch: riscv64
+      name: ${{ matrix.smoke-suite }}
+
   autopilot-tests:
     strategy:
       fail-fast: false
