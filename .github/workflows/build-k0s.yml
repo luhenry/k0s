@@ -109,12 +109,8 @@ jobs:
         run: make spdx.json
 
       - name: "Upload :: SBOM"
-<<<<<<< main
         if: inputs.target-arch != 'riscv64' # FIXME: https://github.com/anchore/syft/pull/4757, it doesn't support linux-riscv64 yet
         uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
-=======
-        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
->>>>>>> main
         with:
           name: sbom-${{ inputs.target-os }}-${{ inputs.target-arch }}
           path: spdx.json
