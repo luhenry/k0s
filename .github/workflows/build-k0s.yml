@@ -37,12 +37,12 @@ jobs:
 
       - name: Set up Docker Buildx
         if: inputs.target-arch == 'arm'
-        uses: docker/setup-buildx-action@v4
+        uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4.0.0
         with:
           endpoint: builders
 
       - name: "Build :: Checkout"
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
           fetch-depth: 0 # for `git describe`
           persist-credentials: false
@@ -64,14 +64,14 @@ jobs:
 
       - name: "Cache :: embedded binaries"
         id: cache-embedded-bins
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           key: "build-k0s-${{ inputs.target-os }}-${{ inputs.target-arch }}-embedded-bins-${{ hashFiles('embedded-bins/**/*') }}"
           path: embedded-bins/staging/${{ inputs.target-os }}/bin/
 
       - name: "Cache :: Go cache"
         id: cache-gocache
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           key: "build-k0s-${{ inputs.target-os }}-${{ inputs.target-arch }}-gocache-go${{ env.GO_VERSION }}-${{ github.sha }}"
           restore-keys: "build-k0s-${{ inputs.target-os }}-${{ inputs.target-arch }}-gocache-go${{ env.GO_VERSION }}-"
@@ -98,7 +98,7 @@ jobs:
           echo "k0s${{ steps.build-prepare.outputs.executable-suffix }} binary size: **$(du -sh k0s${{ steps.build-prepare.outputs.executable-suffix }} | cut -f1)**" >>$GITHUB_STEP_SUMMARY
 
       - name: "Upload :: k0s"
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
         with:
           name: k0s-${{ inputs.target-os }}-${{ inputs.target-arch }}
           path: |
@@ -109,8 +109,12 @@ jobs:
         run: make spdx.json
 
       - name: "Upload :: SBOM"
+<<<<<<< main
         if: inputs.target-arch != 'riscv64' # FIXME: https://github.com/anchore/syft/pull/4757, it doesn't support linux-riscv64 yet
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+=======
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+>>>>>>> main
         with:
           name: sbom-${{ inputs.target-os }}-${{ inputs.target-arch }}
           path: spdx.json
@@ -121,7 +125,7 @@ jobs:
 
       - name: "Upload :: Airgap image list"
         if: inputs.target-os != 'windows'
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
         with:
           name: airgap-image-list-${{ inputs.target-os }}-${{ inputs.target-arch }}
           path: airgap-images.txt
@@ -132,7 +136,7 @@ jobs:
 
       - name: "Upload :: IPv6 test image list"
         if: inputs.target-os != 'windows'
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
         with:
           name: ipv6-test-image-list-${{ inputs.target-os }}-${{ inputs.target-arch }}
           path: ipv6-test-images.txt
