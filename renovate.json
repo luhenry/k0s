@@ -147,6 +147,19 @@
       "groupSlug": "containerd"
     },
     {
+      "description": "Ignore indirect containerd v1 gomod bumps",
+      "enabled": false,
+      "matchManagers": [
+        "gomod"
+      ],
+      "matchDepTypes": [
+        "indirect"
+      ],
+      "matchPackageNames": [
+        "github.com/containerd/containerd"
+      ]
+    },
+    {
       "description": "Group all konnectivity bumps",
       "enabled": true,
       "matchDepNames": [
@@ -197,18 +210,6 @@
       ],
       "ignoreUnstable": true,
       "respectLatest": true
-    },
-    {
-      "description": "Bump Calico for release-1.35",
-      "enabled": true,
-      "matchBaseBranches": [
-        "release-1.35"
-      ],
-      "matchDepNames": [
-        "docker.io/calico/*",
-        "quay.io/k0sproject/calico-*"
-      ],
-      "allowedVersions": "<=3.31"
     },
     {
       "description": "Bump Go for release-1.35",
@@ -405,7 +406,7 @@
         "**/*.yml"
       ],
       "matchStrings": [
-        "# renovate: datasource=(?<datasource>\\S+)( registryUrl=(?<registryUrl>.+))? depName=(?<depName>\\S+)( versioning=(?<versioning>.+))?\\n[^:=\\n]+[:=][ \\t]*[\"']?(?<currentValue>\\S+?)[\"']?[ \\t]*(:?#|\\n)",
+        "# renovate: datasource=(?<datasource>\\S+)( registryUrl=(?<registryUrl>.+))? depName=(?<depName>\\S+)( versioning=(?<versioning>.+))?\\n[^:=\\n]+[:=][ \\t]*[\"']?(?<currentValue>[^@\\s\"']+)(?:@(?<currentDigest>[0-9a-f]{40}))?[\"']?[ \\t]*(:?#|\\n)",
         "[=:][ \\t]*[\"']?(?<currentValue>\\S+?)[\"']?[ \\t]*# renovate: datasource=(?<datasource>\\S+)( registryUrl=(?<registryUrl>.+))? depName=(?<depName>\\S+)( versioning=(?<versioning>.+))?\\n"
       ],
       "datasourceTemplate": "{{{datasource}}}",

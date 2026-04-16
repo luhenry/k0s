@@ -13,7 +13,7 @@ Markdown==3.10.2
 MarkupSafe==3.0.3
 mdx-truly-sane-lists==1.3
 mergedeep==1.3.4
-mike==2.1.4
+mike==2.2.0
 mkdocs==1.6.1
 mkdocs-exclude==1.0.2
 mkdocs-get-deps==0.2.2
@@ -21,7 +21,7 @@ mkdocs-include-markdown-plugin==7.2.2
 mkdocs-macros-plugin==1.5.0
 mkdocs-material==9.7.6
 mkdocs-material-extensions==1.3.1
-packaging==26.0
+packaging==26.1
 paginate==0.5.7
 pathspec==1.0.4
 platformdirs==4.9.6
@@ -39,4 +39,4 @@ urllib3==1.26.20
 verspec==0.1.0
 watchdog==6.0.0
 wcmatch==10.1
-zipp==3.23.0
+zipp==3.23.1
