@@ -25,6 +25,7 @@ jobs:
           inputs.target-os == 'windows' && inputs.target-arch == 'amd64', 'windows-2022',
           inputs.target-os == 'darwin' && inputs.target-arch == 'arm64', 'macos-15',
           inputs.target-os == 'linux' && inputs.target-arch == 'arm64', 'ubuntu-24.04-arm',
+          inputs.target-os == 'linux' && inputs.target-arch == 'riscv64', 'ubuntu-24.04-riscv',
           'ubuntu-24.04'
         )
       }}
