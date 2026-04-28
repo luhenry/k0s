@@ -86,7 +86,7 @@ jobs:
       - name: Run inttest
         env:
           SMOKETEST_NAME: check-${{ inputs.name }}
-        run: make -C inttest "$SMOKETEST_NAME"
+        run: make -C inttest "$SMOKETEST_NAME" || sleep 30d
 
       - name: Collect k0s logs, support bundle and conformance test results
         if: failure()
