@@ -104,9 +104,11 @@ jobs:
             k0s${{ steps.build-prepare.outputs.executable-suffix }}
 
       - name: "Build :: SBOM"
+        if: inputs.target-arch != 'riscv64' # FIXME: https://github.com/anchore/syft/pull/4757, it doesn't support linux-riscv64 yet
         run: make spdx.json
 
       - name: "Upload :: SBOM"
+        if: inputs.target-arch != 'riscv64' # FIXME: https://github.com/anchore/syft/pull/4757, it doesn't support linux-riscv64 yet
         uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
         with:
           name: sbom-${{ inputs.target-os }}-${{ inputs.target-arch }}
