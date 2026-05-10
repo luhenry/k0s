@@ -3,7 +3,7 @@ alpine_patch_version = 3.23.4
 alpine_version = $(word 1,$(subst ., ,$(alpine_patch_version))).$(word 2,$(subst ., ,$(alpine_patch_version)))
 
 # renovate: datasource=golang-version depName=go
-go_version = 1.26.2
+go_version = 1.26.3
 golang_buildimage=docker.io/library/golang:$(go_version)-alpine$(alpine_version)
 
 # renovate: datasource=github-releases depName=opencontainers/runc
@@ -31,7 +31,7 @@ containerd_build_go_ldflags = -w -s
 containerd_build_go_ldflags_extra = -extldflags=-static
 
 # renovate: datasource=github-releases depName=kubernetes/kubernetes
-kubernetes_version = 1.35.4
+kubernetes_version = 1.36.0
 kubernetes_buildimage = $(golang_buildimage)
 kubernetes_build_go_tags = "providerless"
 #kubernetes_build_go_cgo_enabled =
@@ -53,7 +53,7 @@ kine_build_go_ldflags = -w -s
 kine_build_go_ldflags_extra = -extldflags=-static
 
 # renovate: datasource=github-releases depName=etcd-io/etcd
-etcd_version = 3.6.10
+etcd_version = 3.6.11
 etcd_buildimage = $(golang_buildimage)
 #etcd_build_go_tags =
 etcd_build_go_cgo_enabled = 0

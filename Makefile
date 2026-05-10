@@ -334,7 +334,7 @@ ipv6-test-images-linux-amd64.txt \
 ipv6-test-images-linux-arm64.txt: $(GO_ENV_REQUISITES) embedded-bins/Makefile.variables hack/gen-test-images-list/main.go
 	{ \
 	  echo "docker.io/library/nginx:1.30.0-alpine"; \
-	  echo "docker.io/curlimages/curl:8.19.0"; \
+	  echo "docker.io/curlimages/curl:8.20.0"; \
 	  echo "docker.io/library/alpine:$(alpine_version)"; \
 	  echo "docker.io/sonobuoy/sonobuoy:v$(sonobuoy_version)"; \
 	  echo "registry.k8s.io/conformance:v$(kubernetes_version)"; \
@@ -427,6 +427,6 @@ spdx.json: syft.yaml go.mod .bins.$(TARGET_OS).stamp
 	  -v '$(CURDIR)/go.mod':/k0s/go.mod:ro \
 	  -v '$(CURDIR)/embedded-bins/staging/$(TARGET_OS)/bin':/k0s/bin:ro \
 	  -w /k0s \
-	  $(DOCKER_RUN_OPTS) docker.io/anchore/syft:v1.43.0 \
+	  $(DOCKER_RUN_OPTS) docker.io/anchore/syft:v1.44.0 \
 	  --source-name k0s --source-version '$(VERSION)' \
 	  -c syft.yaml -o spdx-json@2.2 . >'$@'
