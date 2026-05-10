@@ -100,6 +100,8 @@ jobs:
             target-arch: amd64
           - target-os: linux
             target-arch: arm64
+          - target-os: linux
+            target-arch: riscv64
           - target-os: windows
             target-arch: amd64
 
@@ -113,7 +115,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target-arch: [amd64, arm64]
+        target-arch: [amd64, arm64, riscv64]
 
     name: "Build :: Airgap image bundle"
     needs: [build-k0s]
@@ -200,6 +202,24 @@ jobs:
     uses: ./.github/workflows/smoketest.yaml
     with:
       arch: arm64
+      name: ${{ matrix.smoke-suite }}
+
+  smoketests-linux-riscv64:
+    strategy:
+      fail-fast: false
+      matrix:
+        smoke-suite:
+          - airgap
+          - basic
+          - network-conformance-calico
+          - network-conformance-kuberouter
+
+    name: "check-${{ matrix.smoke-suite }} :: riscv64"
+    needs: [build-k0s, build-airgap-image-bundle]
+
+    uses: ./.github/workflows/smoketest.yaml
+    with:
+      arch: riscv64
       name: ${{ matrix.smoke-suite }}
 
   autopilot-tests:
