@@ -209,10 +209,10 @@ jobs:
       fail-fast: false
       matrix:
         smoke-suite:
-          # - airgap
+          - airgap
           - basic
-          # - network-conformance-calico
-          # - network-conformance-kuberouter
+          - network-conformance-calico
+          - network-conformance-kuberouter
 
     name: "check-${{ matrix.smoke-suite }} :: riscv64"
     needs: [build-k0s, build-airgap-image-bundle]
